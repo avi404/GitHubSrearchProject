@@ -72,7 +72,7 @@ export class FetchDataComponent implements OnInit {
       console.log("SearchInRepositoryAsync: ", data)
       this.searchResults = data;
     }, error => {   
-      this.errorMessage = error.message;
+       this.errorMessage = (error.statusText != null && error.status != null) ? (error.statusText ) : error.message;
       //console.error(error); // To DO : error handling 
       this.searchResults = null;
     });
