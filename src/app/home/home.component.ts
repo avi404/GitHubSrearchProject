@@ -9,7 +9,7 @@ import { TokenStorageService } from '../services/token-storage.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-
+// note 
 export class HomeComponent implements OnInit {
   constructor(private router: Router, public http: HttpClient, private authService: AuthService, private tokenStorage: TokenStorageService) { }
   form: any = {};
