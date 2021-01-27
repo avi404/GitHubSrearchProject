@@ -10,6 +10,7 @@ import { TokenStorageService } from '../services/token-storage.service';
   styleUrls: ['./home.component.css']
 })
 // note 
+//note 2 
 export class HomeComponent implements OnInit {
   constructor(private router: Router, public http: HttpClient, private authService: AuthService, private tokenStorage: TokenStorageService) { }
   form: any = {};
