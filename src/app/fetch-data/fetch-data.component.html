@@ -1,0 +1,75 @@
+<div class="container">   
+  <div class="row"> 
+    <div class="col-6 myTitle ">
+      <h1 id="tableLabel">GitHubSearch</h1> 
+    </div>
+    <div class="col-6 myButton">
+      <button [hidden]="searchResults?.length ==0"  class="btn btn-info"   (click)="AddToMyFavorites()">Add To My Favorites</button>
+    </div>
+  </div>
+</div>
+<div class="container formContainer ">
+  <form name="form" (ngSubmit)="form.searchbox && form.languae &&  onSubmit()">
+    <div class="form-group">
+      <div class="row" >
+        <div class="col-6">
+            <label for="searchbox">Repository Name</label>
+        </div>
+        <div class="col-6">
+            <label for="website">Programing Languaes:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <input type="text" class="form-control" name="searchbox"    [(ngModel)]="form.searchbox" required
+          #searchbox="ngModel" />
+        </div>
+        <div class="col-6">
+          <select options="website" class="form-control" name="languae" [(ngModel)]="form.languae">
+            <option disabled>Select Language</option>
+            <option *ngFor="let web of languagesList">{{web}}</option>
+          </select>
+        </div>
+       
+      </div>
+      <div>
+      </div>
+    </div>
+    <button [disabled]="!form.searchbox" class="btn btn-primary btn-block"> Search</button>    
+  </form>
+</div>
+
+
+<p *ngIf="errorMessage" span style="color:red"> <em>{{errorMessage}}</em> </p>
+<ng-container [ngSwitch]="true">
+  <ng-container *ngSwitchCase="searchResults?.length===0">
+    <p> No results found </p>
+  </ng-container>
+  <ng-container *ngSwitchCase="searchResults?.length>0">
+    
+    <p>   GitHub Search Results : </p>
+
+    <div class="table-responsive">
+    <table class='table table-striped' aria-labelledby="tableLabel"   *ngIf="searchResults">
+     
+      <thead>
+        <tr>
+          <th>FileName</th>
+        <!--    <th>Path</th>-->
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let result of searchResults">
+          <td>{{ result.fileName }}</td>
+         <!--  <td>{{ result.path }}</td>-->
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </ng-container>
+  
+  <ng-container *ngSwitchDefault>
+    <p> Search to see results </p>
+  </ng-container>
+</ng-container>
